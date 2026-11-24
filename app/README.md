@@ -27,7 +27,8 @@ npx expo start
 EXPO_PUBLIC_API_URL=https://api.example.com
 ```
 
-الخادم مطلوب بنقاط نهاية JSON بطريقة POST:
+الخادم موجود في مجلد `server/` (انظر `server/README.md`). شغّله، ثم اضبط في التطبيق `EXPO_PUBLIC_API_URL` على عنوانه.
+نقاط النهاية المطلوبة (بطريقة POST وترويسة `Authorization: Bearer`):
 
 | المسار | الإدخال | المخرج |
 |---|---|---|

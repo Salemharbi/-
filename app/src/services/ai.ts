@@ -6,6 +6,7 @@
  */
 
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
+const APP_TOKEN = process.env.EXPO_PUBLIC_APP_TOKEN;
 
 export class AIUnavailableError extends Error {}
 
@@ -25,7 +26,10 @@ async function post<T>(path: string, body: unknown): Promise<T> {
   }
   const res = await fetch(`${BASE_URL}${path}`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(APP_TOKEN ? { Authorization: `Bearer ${APP_TOKEN}` } : {}),
+    },
     body: JSON.stringify(body),
   });
   if (!res.ok) throw new Error(`تعذّر إكمال الطلب (رمز ${res.status}).`);
